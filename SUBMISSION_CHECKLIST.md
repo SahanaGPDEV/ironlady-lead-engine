@@ -39,9 +39,9 @@
 - [ ] 1:45-2:15 — Business impact summary
 
 ### Deployment (Optional but Impressive)
-- [ ] Task 1 deployed to Streamlit Cloud
-- [ ] Task 2 deployed to Streamlit Cloud
-- [ ] Demo links added to README
+- [x] Task 1 deployed to Streamlit Cloud
+- [x] Task 2 deployed to Streamlit Cloud
+- [x] Demo links added to README
 
 ### Final Submission
 - [ ] GitHub repository is public

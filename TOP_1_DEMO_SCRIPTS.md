@@ -1,52 +1,45 @@
-# 🏆 Top 1% Demo Video Scripts & Tips
+# 🎬 LEGENDARY SUBMISSION: Demo Video Guide
+**Format: [Visual Action] → [Voiceover Script]**
 
-To be in the top 1%, your video shouldn't just show the app; it should tell a **business success story**. Here is your master guide.
-
----
-
-## 💡 Pro Tips for a "Perfect 10" Recording
-
-1.  **The "Magic" Moment**: The most impressive part is when you fill the form in Task 1 and then **immediately** show it appearing in Task 2. This proves the integration.
-2.  **Focus on Value**: Don't just say "I used an LLM." Say "We use the Groq LPU to generate roadmaps 10x faster than traditional counselors."
-3.  **Clean Setup**: 
-    - Close all unrelated browser tabs.
-    - Use a high-quality mic if possible.
-    - Keep each video between **90 to 120 seconds**.
-4.  **Be Energetic**: Your passion for the project makes a huge difference to the judges.
+This guide shows you exactly what to show on your screen and what to say at the same time.
 
 ---
 
 ## 🎥 Video 1: Asha AI (The Customer Experience)
+**Goal**: Show 1-on-1 counseling, Voice-to-Text, and AI Personalization.
 
-**Goal**: Show how we solve the "Drop-off" problem with personalized AI.
-
-*   **[0:00-0:15] The Hook**: "Hi! I'm [Your Name]. Today I'm presenting the Iron Lady Lead Engine. We're starting with **Asha AI**, our interactive leadership architect designed to solve customer drop-off through hyper-personalization."
-*   **[0:15-0:45] The Interaction**: (Screen: `app.py`) "Watch as a user named Priya, a professional struggling with public speaking, fills out our discovery form. We're not just taking her name; we're understanding her emotional goals."
-*   **[0:45-1:15] The AI Result**: (Click button) "In under 2 seconds, Asha generates a complete roadmap. Notice the **Match Score** and the specific steps. This isn't a template—this is a unique plan based on her specific input."
-*   **[1:15-1:30] The A/B Feature**: (Point to sidebar) "We also have a hidden A/B testing engine running. Half our users see a supportive mentor tone, while others see a high-urgency sales tone. We track this to see what converts best."
-*   **[1:30-1:45] Conclusion**: "The lead is now automatically captured. Let's see where it went."
-
----
-
-## 🎥 Video 2: Project Ironclad (The Business Intelligence)
-
-**Goal**: Show how we help the team convert leads with speed and data.
-
-*   **[0:00-0:15] The Hook**: "This is **Project Ironclad**, our internal CRM. This is where the sales team turns inquiries into enrolled members."
-*   **[0:15-0:30] Security**: (Point to login) "First, notice we've implemented internal access control. Iron Lady's data is sensitive, so the CRM is protected." (Enter `ironlady2025`).
-*   **[0:30-1:00] The Dashboard**: (Screen: `dashboard.py`) "Our dashboard provides instant visibility. We can see our total leads and, most importantly, our **A/B Performance**. We can see in real-time if our 'Supportive' or 'Urgent' AI tone is winning."
-*   **[1:00-1:30] The AI Co-Pilot**: (Click on the new lead from Video 1) "Here is Priya! The lead we just created. Instead of manual follow-ups, our counselor clicks 'Generate AI Follow-Up'. The AI analyzes Priya's goals and writes a personalized WhatsApp message in 10 seconds. That's a **60x speed improvement**."
-*   **[1:30-2:00] The Close**: "By integrating customer capture with internal intelligence, the Iron Lady Lead Engine ensures no lead is left behind and every conversation is personalized. Thank you!"
+| Time | **[Visual Action - What to Show]** | **[Audio Script - What to Say]** |
+| :--- | :--- | :--- |
+| **0:00** | Start on the **Asha AI** landing page (:8501). | "Hi, I'm Sahana! Today I'm presenting the **Iron Lady Lead Engine**, an AI system designed to turn prospects into leaders." |
+| **0:15** | Scroll to the "Tell Asha About Yourself" form. Enter your name. | "This is Asha, our AI Advisor. She doesn't just collect data—she builds an emotional connection with the user." |
+| **0:30** | Click the **Microphone button**. Speak a goal like: *"I want a 5 lakh package in 6 months."* | "Watch this. Instead of typing, I can speak my goal directly. We use **Groq Whisper-large-v3** for near-instant, multi-language transcription." |
+| **0:45** | Wait for transcription. Click **"Get My Free Roadmap"**. | "Asha is now analyzing my goals against our program database to create a unique transformation plan." |
+| **1:00** | Scroll through the roadmap. Especially the **Match Score** and **3-Step Plan**. | "In seconds, I have a personalized 6-month roadmap with an 85% match score. It even generated a comparison table for me." |
+| **1:15** | Click **"🎙️ Play Audio Roadmap"**. Let her speak for 5 seconds, then click **"⏹️ Stop Audio"**. | "Accessibility is key. Users can listen to Asha's voice while they read. We've optimized her for a warm, professional female persona." |
+| **1:30** | Mention the A/B test (sidebar status). | "Behind the scenes, we're also running an A/B test on Asha's tone to see which version converts more leads. Now, let's see where this lead goes." |
 
 ---
 
-## 🌟 5 Key Phrases to use to impress Judges:
-1.  **"Unified Data Pipeline"**: Shows you understand architecture.
-2.  **"Hyper-Personalized"**: Sounds more professional than just "custom."
-3.  **"ROI-Driven A/B Testing"**: Shows you care about business results.
-4.  **"Zero-Latency Handoff"**: Describes the seamless flow between the two apps.
-5.  **"Enterprise-Ready Roadmap"**: Shows you're thinking about future scale (SQL, RAG, etc.).
+## 🎥 Video 2: Project Ironclad (The Internal CRM)
+**Goal**: Show Security, Data Flow, and the AI Co-Pilot.
+
+| Time | **[Visual Action - What to Show]** | **[Audio Script - What to Say]** |
+| :--- | :--- | :--- |
+| **0:00** | Start on the CRM **Access Control** screen (:8502). | "Welcome to **Project Ironclad**, our internal lead command center. Since we handle sensitive data, we've implemented secure access control." |
+| **0:15** | Type `ironlady2025` and click enter. Show the Dashboard. | "Once inside, the sales team gets a high-level view of our entire pipeline, including **Real-Time A/B Analytics**." |
+| **0:30** | Point at the A/B Performance chart/metrics. | "We can see exactly which AI tone—Version A or B—is winning. This moves business decisions from 'guessing' to 'data-driven'." |
+| **0:45** | Find the lead you just created in Video 1 (e.g., Sadiya/Sahana). | "There’s our lead from Video 1! The data has flowed perfectly through our unified pipeline." |
+| **1:00** | Click the lead. Click **"🎙️ Hear User Goal"**. | "Before the counselor calls, they can listen to the user's recorded goal to understand their emotions and needs." |
+| **1:15** | Click **"✨ Generate Custom Follow-Up Message"**. | "Finally, our **AI Co-Pilot** writes a personalized WhatsApp message in 10 seconds based on their specific goal and the A/B test results." |
+| **1:30** | Show the generated message. | "This is how Iron Lady scales. From a single voice recording to a personalized conversion—all powered by AI. Thank you!" |
 
 ---
 
-**Good luck! You've built something truly impressive. Just let your work shine in the videos!** 🏆🚀
+## 👑 Top 5 Checklist for a "Legendary" Recording:
+1.  **Cursor Movement**: Move your mouse slowly. Don't "wiggle" it too much.
+2.  **Audio Quality**: Record in a quiet room. The speech-to-text transcription is already impressive—your voice should be too!
+3.  **The "Wow" Factor**: When you click "Hear User Goal", let it play for 2 seconds. It's a huge technical flex.
+4.  **No Typos**: Make sure your input data (Name/Goal) looks professional.
+5.  **Be Proud!**: You've built a world-class system. Your confidence in the video will convince the judges!
+
+🏆 **GO GET THAT TOP SPOT!** 🚀

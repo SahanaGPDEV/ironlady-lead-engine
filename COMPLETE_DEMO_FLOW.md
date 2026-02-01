@@ -7,7 +7,7 @@
 ## 📱 **PART 1: Customer Journey (Asha AI)**
 
 ### **Step 1: Open Asha AI**
-- URL: **`http://localhost:8502`**
+- URL: **`http://localhost:8501`**
 - This is the customer-facing application
 
 ### **Step 2: Fill the Customer Form**
@@ -40,7 +40,7 @@ Act as a potential customer and fill in:
 ## 🛡️ **PART 2: Internal Team Journey (Project Ironclad)**
 
 ### **Step 5: Open Project Ironclad**
-- URL: **`http://localhost:8501`**
+- URL: **`http://localhost:8502`**
 - This is the internal CRM dashboard
 
 ### **Step 6: View the New Lead**
@@ -108,8 +108,8 @@ Act as a potential customer and fill in:
 
 ## 🚀 **Ready to Start?**
 
-1. **Open Tab 1**: `http://localhost:8502` (Asha AI)
-2. **Open Tab 2**: `http://localhost:8501` (Project Ironclad)
+1. **Open Tab 1**: `http://localhost:8501` (Asha AI)
+2. **Open Tab 2**: `http://localhost:8502` (Project Ironclad)
 3. **Follow the steps above**
 4. **Watch the magic happen!** ✨
 

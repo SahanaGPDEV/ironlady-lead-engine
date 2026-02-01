@@ -1,6 +1,5 @@
 import os
 import csv
-import pandas as pd
 from datetime import datetime
 
 # Define paths
@@ -44,25 +43,36 @@ except Exception as e:
 # 2. Simulate Task 2: Read and Update Lead
 print("\n--- [Step 2] Simulating Task 2 (Project Ironclad) CRUD ---")
 try:
-    df = pd.read_csv(CSV_PATH)
-    print(f"✅ CSV Loaded. Total rows: {len(df)}")
+    rows = []
+    with open(CSV_PATH, "r", newline="", encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+    
+    print(f"✅ CSV Loaded. Total rows: {len(rows)}")
     
     # Verify the lead exists
-    target_lead = df[df["Name"] == "Verification User"]
-    if target_lead.empty:
-        print("❌ Lead not found in DataFrame!")
+    found = False
+    for row in rows:
+        if row["Name"] == "Verification User":
+            found = True
+            row["Status"] = "Contacted"
+            row["Notes"] = "Automated verification test."
+            break
+            
+    if not found:
+        print("❌ Lead not found in CSV!")
         exit(1)
     else:
-        print("✅ Lead found in DataFrame.")
+        print("✅ Lead found and updated in memory.")
         
-    # Simulate Update (Status Change)
-    idx = target_lead.index[0]
-    df.at[idx, "Status"] = "Contacted"
-    df.at[idx, "Notes"] = "Automated verification test."
-    
     # Save back
-    df.to_csv(CSV_PATH, index=False)
-    print("✅ Lead updated and saved back to CSV.")
+    if rows:
+        header = list(rows[0].keys())
+        with open(CSV_PATH, "w", newline="", encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=header)
+            writer.writeheader()
+            writer.writerows(rows)
+        print("✅ CSV updated and saved back to disk.")
     
 except Exception as e:
     print(f"❌ Failed during CRUD operation: {e}")
@@ -71,16 +81,22 @@ except Exception as e:
 # 3. Final Verification
 print("\n--- [Step 3] Final Data Integrity Check ---")
 try:
-    final_df = pd.read_csv(CSV_PATH)
-    updated_lead = final_df[final_df["Name"] == "Verification User"].iloc[0]
+    with open(CSV_PATH, "r", newline="", encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+        
+    updated_lead = next((r for r in rows if r["Name"] == "Verification User"), None)
     
-    if updated_lead["Status"] == "Contacted" and updated_lead["Notes"] == "Automated verification test.":
+    if updated_lead and updated_lead["Status"] == "Contacted" and updated_lead["Notes"] == "Automated verification test.":
         print("✅ SUCCESS: Data flow verified! Task 1 -> CSV -> Task 2 Update verified.")
         
-        # Cleanup (Optional: remove the test user to keep file clean)
-        # final_df = final_df[final_df["Name"] != "Verification User"]
-        # final_df.to_csv(CSV_PATH, index=False)
-        # print("🧹 Cleanup completed.")
+        # Cleanup (Optional)
+        # rows = [r for r in rows if r["Name"] != "Verification User"]
+        # with open(CSV_PATH, "w", newline="", encoding='utf-8') as f:
+        #     writer = csv.DictWriter(f, fieldnames=header)
+        #     writer.writeheader()
+        #     writer.writerows(rows)
+        # print("Check complete")
     else:
         print("❌ FAILURE: Data did not match expected values after update.")
         print(updated_lead)

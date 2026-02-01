@@ -65,8 +65,8 @@ graph TD
 
 | App | Link | Access Code |
 |-----|------|-------------|
-| **Task 1: Asha AI** | [Live App](https://ironlady-asha-ai.streamlit.app) | Internal Only |
-| **Task 2: Ironclad CRM** | [Live App](https://ironlady-crm.streamlit.app) | `ironlady2025` |
+| **Task 1: Asha AI** | [Live App](https://ironlady-lead-engine-9dzmeeryvgmu6qya835fky.streamlit.app/) | Internal Only |
+| **Task 2: Ironclad CRM** | [Live App](https://ironlady-crm.streamlit.app/) | `ironlady2025` |
 
 > **Note**: Deployed versions run independently. For the complete integrated workflow (where leads flow from Task 1 to Task 2 in real-time), please run the Local Installation below.
 

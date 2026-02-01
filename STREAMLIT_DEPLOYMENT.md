@@ -29,7 +29,7 @@ You can deploy **both Task 1 and Task 2** as separate live apps!
 
 5. Click **"Deploy!"**
 6. Wait 2-3 minutes for deployment
-7. Your app will be live at: `https://ironlady-asha-ai.streamlit.app`
+7. Your app will be live at: `https://ironlady-lead-engine-9dzmeeryvgmu6qya835fky.streamlit.app/`
 
 ---
 
@@ -57,7 +57,7 @@ You can deploy **both Task 1 and Task 2** as separate live apps!
 ## 🔗 **After Deployment**
 
 You'll have **2 live apps**:
-- 🌸 **Asha AI** (Customer-facing): `https://ironlady-asha-ai.streamlit.app`
+- 🌸 **Asha AI** (Customer-facing): `https://ironlady-lead-engine-9dzmeeryvgmu6qya835fky.streamlit.app/`
 - 🛡️ **Project Ironclad** (Internal CRM): `https://ironlady-crm.streamlit.app`
 
 ---
@@ -96,7 +96,7 @@ After deployment, add this section to your README:
 ## 🌐 Live Demos
 
 ### Task 1: Asha AI (Customer Advisor)
-🔗 **Live App**: https://ironlady-asha-ai.streamlit.app
+🔗 **Live App**: https://ironlady-lead-engine-9dzmeeryvgmu6qya835fky.streamlit.app/
 
 ### Task 2: Project Ironclad (Internal CRM)
 🔗 **Live App**: https://ironlady-crm.streamlit.app
