@@ -190,7 +190,8 @@ def load_data():
             "Goal": ["Get promoted to leadership role"],
             "Program": ["Leadership Accelerator"],
             "Status": ["New"],
-            "Notes": ["Sample lead for demonstration"]
+            "Notes": ["Sample lead for demonstration"],
+            "Version": ["A"]
         }
         df = pd.DataFrame(sample_data)
         df.to_csv(CSV_FILE, index=False)
@@ -198,13 +199,17 @@ def load_data():
     
     try:
         df = pd.read_csv(CSV_FILE)
-        required_cols = ["Timestamp", "Name", "Role", "Challenge", "Goal", "Program", "Status", "Notes"]
+        required_cols = ["Timestamp", "Name", "Role", "Challenge", "Goal", "Program", "Status", "Notes", "Version"]
         for col in required_cols:
             if col not in df.columns:
-                df[col] = "" if col == "Notes" else "New" if col == "Status" else "N/A"
+                if col == "Notes": df[col] = ""
+                elif col == "Status": df[col] = "New"
+                elif col == "Version": df[col] = "N/A"
+                else: df[col] = "N/A"
         
         df["Status"] = df["Status"].fillna("New")
         df["Notes"] = df["Notes"].fillna("")
+        df["Version"] = df["Version"].fillna("N/A")
         return df
     except Exception as e:
         st.error(f"Error loading data: {e}")
@@ -225,6 +230,17 @@ def save_data(df):
 with st.sidebar:
     st.markdown("### 🛡️ PROJECT IRONCLAD")
     st.markdown("*AI-Augmented Lead Command Center*")
+    st.divider()
+
+    # Authentication
+    st.markdown("🔒 **ACCESS CONTROL**")
+    pwd = st.text_input("Enter CRM Password", type="password")
+    if pwd != "ironlady2025": # Simple demo password
+        if pwd: st.error("❌ Incorrect Password")
+        st.warning("Please enter password to access CRM dashboard.")
+        st.info("💡 Hint: ironlady2025")
+        st.stop()
+    st.success("✅ Access Granted")
     st.divider()
     
     df = load_data()
@@ -339,12 +355,21 @@ if not df.empty:
     
     # Conversion Rate
     conversion_rate = (converted / total * 100) if total > 0 else 0
+    
+    # Version Performance
+    vers_a = df[df["Version"] == "A"]
+    vers_b = df[df["Version"] == "B"]
+    conv_a = (len(vers_a[vers_a["Status"] == "Converted"]) / len(vers_a) * 100) if len(vers_a) > 0 else 0
+    conv_b = (len(vers_b[vers_b["Status"] == "Converted"]) / len(vers_b) * 100) if len(vers_b) > 0 else 0
+
     st.markdown(f"""
     <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); 
                 color: white; padding: 16px; border-radius: 12px; text-align: center; 
                 margin: 20px 0; box-shadow: 0 4px 16px rgba(16,185,129,0.3);">
-        <h3 style="margin:0;">Conversion Rate: {conversion_rate:.1f}%</h3>
-        <p style="margin:4px 0 0 0; opacity:0.9;">Pipeline Health: {"🔥 Excellent" if conversion_rate > 20 else "✅ Good" if conversion_rate > 10 else "⚠️ Needs Attention"}</p>
+        <h3 style="margin:0;">Overall Conversion Rate: {conversion_rate:.1f}%</h3>
+        <p style="margin:4px 0 0 0; opacity:0.9;">
+            🧪 A/B Performance: Version A (Warm): {conv_a:.1f}% | Version B (Urgent): {conv_b:.1f}%
+        </p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -367,6 +392,7 @@ if not filtered_df.empty:
             "Role": st.column_config.TextColumn("💼 Role", width="small"),
             "Program": st.column_config.TextColumn("📚 Program", width="medium"),
             "Status": st.column_config.TextColumn("📊 Status", width="small"),
+            "Version": st.column_config.TextColumn("🧪 Test", width="small"),
             "Challenge": st.column_config.TextColumn("🚧 Challenge", width="medium"),
         }
     )
@@ -390,6 +416,7 @@ if not filtered_df.empty:
                 <p><strong>Role:</strong> {lead['Role']}</p>
                 <p><strong>Program Interest:</strong> {lead['Program']}</p>
                 <p><strong>Status:</strong> <span class="status-badge status-{lead['Status'].lower()}">{lead['Status']}</span></p>
+                <p><strong>🧪 A/B Version:</strong> {lead['Version']}</p>
                 <p><strong>🎯 Goal:</strong> {lead['Goal']}</p>
                 <p><strong>🚧 Challenge:</strong> {lead['Challenge']}</p>
                 <p><strong>📅 Captured:</strong> {lead['Timestamp']}</p>

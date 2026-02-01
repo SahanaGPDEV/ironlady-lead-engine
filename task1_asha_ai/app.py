@@ -38,7 +38,7 @@ def save_lead(data):
     with open(csv_file, "a", newline="", encoding='utf-8') as f:
         writer = csv.writer(f)
         if not file_exists:
-            writer.writerow(["Timestamp", "Name", "Role", "Challenge", "Goal", "Program", "Status", "Notes"])
+            writer.writerow(["Timestamp", "Name", "Role", "Challenge", "Goal", "Program", "Status", "Notes", "Version"])
         
         writer.writerow([
             datetime.now(), 
@@ -48,7 +48,8 @@ def save_lead(data):
             data['goal'],
             data.get('program', 'N/A'),
             "New",
-            ""
+            "",
+            data.get('version', 'N/A')
         ])
 
 @st.cache_data(ttl=3600)
@@ -75,10 +76,15 @@ User Profile:
 - Challenge: {user_data['challenge']}
 - Goal: {user_data['goal']}
 
+Objective: Create a hyper-personalized leadership transformation roadmap.
+Strategy:
+- Acknowledge their role as a {user_data['role']} with specific empathy.
+- Address their primary challenge ({user_data['challenge']}) using psychological safety and empowerment.
+- Map the recommended program benefits DIRECTLY to their stated goal: "{user_data['goal']}".
+- Tone: {tone}.
+
 Available Programs:
 {json.dumps(config.PROGRAMS_DB, indent=2)}
-
-Tone: {tone}
 
 Create a personalized roadmap with:
 
@@ -470,6 +476,7 @@ elif st.session_state.stage == 1:
             
             # Save Lead
             st.session_state.user_data['program'] = st.session_state.recommended_program
+            st.session_state.user_data['version'] = st.session_state.ab_test_version
             save_lead(st.session_state.user_data)
 
     # Progress Tracker

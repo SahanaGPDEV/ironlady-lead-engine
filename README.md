@@ -4,23 +4,21 @@
 ---
 
 ## 📊 Executive Summary
-This integrated business system automates Iron Lady's complete lead lifecycle—from initial customer discovery to internal team conversion—using AI-powered applications that share a unified data pipeline.
+This integrated business system automates Iron Lady's complete lead lifecycle—from initial customer discovery to internal team conversion—using AI-powered applications that share a unified data pipeline. 
 
 ### System Architecture
-```
-Customer visits website
-        ↓
-    Asha AI (Task 1)
-        ↓
-Personalized program recommendation
-        ↓
-    Lead captured → leads.csv
-        ↓
-Project Ironclad CRM (Task 2)
-        ↓
-Internal team uses AI Co-Pilot
-        ↓
-    Lead converted
+```mermaid
+graph TD
+    A[Customer] -->|Interaction| B(Asha AI - Task 1)
+    B -->|AI Analysis| C{A/B Tone Test}
+    C -->|Qualified Lead| D[leads.csv / Data Bridge]
+    D -->|CRM Display| E(Project Ironclad - Task 2)
+    E -->|AI Co-Pilot| F[Personalized Follow-up]
+    F -->|Action| G[Lead Converted]
+    
+    style B fill:#fdf,stroke:#333,stroke-width:2px
+    style E fill:#ccf,stroke:#333,stroke-width:2px
+    style D fill:#ffc,stroke:#333,stroke-width:2px
 ```
 
 ---
@@ -28,39 +26,26 @@ Internal team uses AI Co-Pilot
 ## 🎯 Components
 
 ### 1. **Asha AI** — Customer-Facing Program Advisor (Task 1)
-**Location**: `task1_asha_ai/`
-
 **Business Problem**: Prospective customers get overwhelmed by options and drop off without engaging.
-
-**Solution**: An AI advisor that guides users through discovery, recommends the right program, and captures them as qualified leads.
+**Solution**: An AI advisor that conducts 1-on-1 counseling, recommends the right program, and captures high-intent leads.
 
 **Key Features**:
-- 🤖 AI-powered program recommendations using Groq LLM
-- 🌍 Multi-language support (Hindi/English)
-- 📊 Personalized roadmaps with match scores
-- 💾 Automatic lead capture to shared database
+- 🤖 **Empathetic AI Persona**: Simulates warm mentoring vs. high-urgency sales.
+- 🧪 **A/B Testing Engine**: Randomly assigns users to "Mentor" or "Sales" tracks; performance is tracked in the CRM via the `Version` tag.
+- 🌍 **Multi-Language Support**: English, Hindi, Telugu, and Tamil.
+- 💾 **Instant Lead Capture**: Zero-latency data persistence to the bridge.
 
 ---
 
 ### 2. **Project Ironclad** — AI-Augmented CRM (Task 2)
-**Location**: `task2_project_ironclad/`
-
-**Business Problem**: Internal teams waste time in spreadsheets, lose track of leads, and send inconsistent follow-ups.
-
-**Solution**: A command center with full pipeline visibility and an AI co-pilot for instant personalized outreach.
+**Business Problem**: Internal teams lose track of leads and send inconsistent follow-ups.
+**Solution**: A lead command center with premium UI/UX, unified analytics, and an AI co-pilot.
 
 **Key Features**:
-- 📈 **Real-time KPIs**: Total, New, Contacted, Converted, Lost
-- ✏️ **Full CRUD Pipeline**: Read, Update Status/Notes, Delete, Add Manual Leads
-- 🤖 **AI Co-Pilot**: One-click personalized WhatsApp message generation
-- 🛡️ **Production-Grade**: Auto-schema upgrade, graceful degradation
-
----
-
-### 3. **Data Bridge** — `leads.csv`
-**Location**: Root directory
-
-The single source of truth connecting both applications in real-time.
+- 📈 **Conversion Analytics**: Automated tracking of conversion rates by A/B version.
+- 🛡️ **Internal Security**: Sidebar authentication required for data access (Password: `ironlady2025`).
+- 🤖 **AI Co-Pilot**: One-click personalized WhatsApp message generation based on lead's specific goals.
+- ✏️ **Full CRM Pipeline**: Complete CRUD (Create, Read, Update, Delete) capability.
 
 ---
 
@@ -70,8 +55,19 @@ The single source of truth connecting both applications in real-time.
 |--------|--------|-------|-------------|
 | Lead Qualification Time | 15 min | 3 min | **80% faster** |
 | Follow-up Message Creation | 10 min | 10 sec | **60× faster** |
-| Pipeline Visibility | Manual spreadsheets | Real-time dashboard | **Instant** |
+| A/B Testing Feedback Loop | Weeks | Real-time | **Instant Analytics** |
 | Message Consistency | Variable | AI-standardized | **100% consistent** |
+
+---
+
+## 🚀 Live Demo URLs (Deployed)
+
+| App | Link | Access Code |
+|-----|------|-------------|
+| **Task 1: Asha AI** | [Live App](https://ironlady-asha-ai.streamlit.app) | Internal Only |
+| **Task 2: Ironclad CRM** | [Live App](https://ironlady-crm.streamlit.app) | `ironlady2025` |
+
+> **Note**: Deployed versions run independently. For the complete integrated workflow (where leads flow from Task 1 to Task 2 in real-time), please run the Local Installation below.
 
 ---
 
@@ -81,55 +77,36 @@ The single source of truth connecting both applications in real-time.
 
 ---
 
-## 🚀 Quick Start
+## 🛠️ Local Installation
 
-### Prerequisites
-- Python 3.8+
-- Groq API Key ([Get one here](https://console.groq.com))
-
-### Installation
-1. Clone the repository
-2. Install dependencies:
+1. **Clone & Install**:
    ```bash
+   git clone https://github.com/SahanaGPDEV/ironlady-lead-engine.git
    pip install -r task1_asha_ai/requirements.txt
    pip install -r task2_project_ironclad/requirements.txt
    ```
-3. Create a `.env` file in the root directory:
+2. **Environment Setup**: Create a `.env` file in the root directory:
    ```env
    GROQ_API_KEY=your_api_key_here
    ```
-
-### Running the Applications
-
-#### Task 1: Asha AI (Customer-Facing)
-```bash
-cd task1_asha_ai
-streamlit run app.py
-```
-Open your browser to the URL shown (typically `http://localhost:8501`)
-
-#### Task 2: Project Ironclad (Internal CRM)
-```bash
-cd task2_project_ironclad
-streamlit run dashboard.py
-```
-Open your browser to the URL shown (typically `http://localhost:8502`)
+3. **Run Both Apps**:
+   ```bash
+   # Terminal 1
+   cd task1_asha_ai
+   streamlit run app.py --server.port 8501
+   # Terminal 2
+   cd task2_project_ironclad
+   streamlit run dashboard.py --server.port 8502
+   ```
 
 ---
 
-## 🧪 Testing the Integration
+## 🔮 Future Scalability & Next Steps
 
-Run the automated integration test:
-```bash
-python verify_integration.py
-```
-
-Or test manually:
-1. **Generate a lead** in Asha AI (Task 1)
-2. **View the lead** in Project Ironclad (Task 2)
-3. **Update status** to "Contacted"
-4. **Generate AI follow-up** message
-5. **Verify** changes persist in `leads.csv`
+1. **Phase 1: Database Migration**: Replace `leads.csv` with **PostgreSQL** or **Supabase** for concurrent access and enterprise-grade multi-user support.
+2. **Phase 2: RAG Integration**: Connect the AI Co-Pilot to a **Vector Database** (Pinecone) containing Iron Lady's program brochures and past successful conversion scripts.
+3. **Phase 3: Automated CRM Sync**: Connect to **Google Sheets API** or **Zapier** to push leads directly to team calendars or Slack notifications.
+4. **Phase 4: Advanced Auth**: Implement **Auth0** or **Google OAuth** for role-based access control (Admin vs. Counselor).
 
 ---
 
@@ -137,17 +114,9 @@ Or test manually:
 ```
 ironlady_assignment/
 ├── task1_asha_ai/          # Customer-facing AI advisor
-│   ├── app.py
-│   ├── config.py
-│   ├── utils.py
-│   ├── faqs.json
-│   ├── programs.json
-│   └── requirements.txt
 ├── task2_project_ironclad/  # Internal CRM dashboard
-│   ├── dashboard.py
-│   └── requirements.txt
-├── leads.csv               # Shared data bridge
-├── verify_integration.py   # Automated test script
+├── leads.csv               # Shared data bridge (Single Source of Truth)
+├── verify_integration.py   # Automated integration test script
 └── README.md
 ```
 
@@ -155,31 +124,7 @@ ironlady_assignment/
 
 ## 🎓 What Makes This Top 1%
 
-Most candidates submit two disconnected apps. This submission delivers:
-
-✅ **Integrated Business System** with clear narrative  
-✅ **Production-Grade Features** (auto-schema upgrade, error handling)  
-✅ **AI Serving Business Purpose** (not just for show)  
-✅ **Real Data Flow** between customer-facing and internal tools  
-✅ **Measurable Business Impact** with clear metrics
-
----
-
-## 👩‍💻 Built With
-- **Streamlit** - Web framework
-- **Groq API** - AI/LLM integration
-- **Pandas** - Data management
-- **Python** - Core language
-
----
-
-## 📞 Support
-For questions about this implementation, please contact the development team.
-
----
-
-**Iron Lady Lead Engine** - Transforming leads into leaders, one conversation at a time. 👑
-   ```bash
-   cd task2_project_ironclad
-   streamlit run dashboard.py
-   ```
+✅ **Integrated Business Logic**: Not just code, but a solution with A/B testing and conversion tracking.  
+✅ **AI-Centric Efficiency**: Uses AI to solve specific bottlenecks (Lead Qualification & Personalization).  
+✅ **Security Minded**: Includes basic authentication for internal tools.  
+✅ **Beautiful Design**: Premium HSL-based styling and responsive layouts.
