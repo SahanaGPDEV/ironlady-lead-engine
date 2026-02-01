@@ -149,7 +149,8 @@ st.session_state.visits += 1
 # -------------------------------------------------------------------------------------
 # LOAD DATA
 # -------------------------------------------------------------------------------------
-with open("faqs.json", "r", encoding="utf-8") as f:
+faq_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "faqs.json")
+with open(faq_path, "r", encoding="utf-8") as f:
     FAQS = json.load(f)
 
 # -------------------------------------------------------------------------------------
