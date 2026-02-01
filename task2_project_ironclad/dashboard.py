@@ -300,6 +300,7 @@ with st.sidebar:
 st.markdown("""
 <div class="main-header">
     <h1 style="margin:0; font-size:2.5rem;">🛡️ PROJECT IRONCLAD</h1>
+    <p style="margin:4px 0; font-size:1.2rem; font-weight:600; color:#cbd5e1;">Candidate ID: TAOCTC2C25501</p>
     <p style="margin:8px 0 0 0; font-size:1.1rem; opacity:0.9;">AI-Powered Lead Management & Conversion Engine</p>
 </div>
 """, unsafe_allow_html=True)
