@@ -378,11 +378,12 @@ if st.session_state.stage == 0:
             use_container_width=True
         )
         
-        if audio:
+        if audio and (st.session_state.get('last_audio') != audio['id']):
             with st.spinner("🧠 Asha is listening and transcribing..."):
                 transcription = transcribe_audio(audio['bytes'], os.getenv("GROQ_API_KEY"))
                 if transcription and "Error" not in transcription:
                     st.session_state.voice_goal = transcription
+                    st.session_state.last_audio = audio['id']
                     st.rerun()
                 elif transcription:
                     st.error(transcription)
