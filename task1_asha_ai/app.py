@@ -520,39 +520,49 @@ elif st.session_state.stage == 1:
     st.markdown(st.session_state.ai_response)
     
     # Text-to-Voice (Output)
-    st.divider()
-    st.markdown("### 🔊 Listen to Asha")
-    if st.button("🎙️ Play Audio Roadmap", use_container_width=True):
-        clean_text = st.session_state.ai_response.replace('\n', ' ').replace('"', "'").replace('*', '')
-        short_text = clean_text[:800]
-        
-        components.html(f"""
-            <script>
-                var synth = window.parent.speechSynthesis;
-                synth.cancel();
-                
-                var msg = new SpeechSynthesisUtterance("{short_text}");
-                
-                // Try to find a female voice
-                var voices = synth.getVoices();
-                var femaleVoice = voices.find(v => 
-                    v.name.includes('Female') || 
-                    v.name.includes('woman') || 
-                    v.name.includes('Zira') || 
-                    v.name.includes('Google UK English Female') ||
-                    v.name.includes('Samantha')
-                );
-                
-                if (femaleVoice) {{
-                    msg.voice = femaleVoice;
-                }} else {{
-                    msg.pitch = 1.3; // Increased pitch as fallback
-                }}
-                
-                msg.rate = 1.0;
-                synth.speak(msg);
-            </script>
-        """, height=0)
+    col_v1, col_v2 = st.columns(2)
+    with col_v1:
+        if st.button("🎙️ Play Audio Roadmap", use_container_width=True):
+            # Clean markdown and special chars for smoother speech
+            # Remove markdown headers, bold, and bullet points
+            clean_text = st.session_state.ai_response
+            clean_text = clean_text.replace('#', '').replace('*', '').replace('-', '').replace('`', '')
+            clean_text = clean_text.replace('\n', ' ').replace('"', "'")
+            short_text = clean_text[:800].strip()
+            
+            components.html(f"""
+                <script>
+                    var synth = window.parent.speechSynthesis;
+                    synth.cancel();
+                    
+                    var msg = new SpeechSynthesisUtterance("{short_text}");
+                    
+                    // Force refresh voices list
+                    var voices = synth.getVoices();
+                    var femaleVoice = voices.find(v => 
+                        v.name.includes('Female') || v.name.includes('woman') || 
+                        v.name.includes('Zira') || v.name.includes('Google UK English Female') ||
+                        v.name.includes('Samantha') || v.name.includes('Microsoft Maria')
+                    );
+                    
+                    if (femaleVoice) {{
+                        msg.voice = femaleVoice;
+                    }} else {{
+                        msg.pitch = 1.4; 
+                    }}
+                    
+                    msg.rate = 1.0;
+                    synth.speak(msg);
+                </script>
+            """, height=0)
+
+    with col_v2:
+        if st.button("⏹️ Stop Audio", use_container_width=True):
+            components.html("""
+                <script>
+                    window.parent.speechSynthesis.cancel();
+                </script>
+            """, height=0)
     
     st.markdown('</div>', unsafe_allow_html=True)
 

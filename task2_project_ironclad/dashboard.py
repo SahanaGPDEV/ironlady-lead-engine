@@ -424,33 +424,44 @@ if not filtered_df.empty:
             </div>
             """, unsafe_allow_html=True)
             
-            if st.button("🎙️ Hear User Goal", use_container_width=True):
-                goal_text = f"User goal from {lead['Name']}: {lead['Goal']}".replace('"', "'")
-                components.html(f"""
-                    <script>
-                        var synth = window.parent.speechSynthesis;
-                        synth.cancel();
-                        var msg = new SpeechSynthesisUtterance("{goal_text}");
-                        
-                        var voices = synth.getVoices();
-                        var femaleVoice = voices.find(v => 
-                            v.name.includes('Female') || 
-                            v.name.includes('woman') || 
-                            v.name.includes('Zira') || 
-                            v.name.includes('Google UK English Female') ||
-                            v.name.includes('Samantha')
-                        );
-                        
-                        if (femaleVoice) {{
-                            msg.voice = femaleVoice;
-                        }} else {{
-                            msg.pitch = 1.3;
-                        }}
-                        
-                        msg.rate = 1.0;
-                        synth.speak(msg);
-                    </script>
-                """, height=0)
+            col_v1, col_v2 = st.columns(2)
+            with col_v1:
+                if st.button("🎙️ Hear User Goal", use_container_width=True):
+                    # Clean text for speech
+                    clean_goal = lead['Goal'].replace('"', "'").replace('#', '').replace('*', '').replace('-', '')
+                    goal_text = f"User goal from {lead['Name']}: {clean_goal}"
+                    
+                    components.html(f"""
+                        <script>
+                            var synth = window.parent.speechSynthesis;
+                            synth.cancel();
+                            var msg = new SpeechSynthesisUtterance("{goal_text}");
+                            
+                            var voices = synth.getVoices();
+                            var femaleVoice = voices.find(v => 
+                                v.name.includes('Female') || v.name.includes('woman') || 
+                                v.name.includes('Zira') || v.name.includes('Google UK English Female') ||
+                                v.name.includes('Samantha') || v.name.includes('Microsoft Maria')
+                            );
+                            
+                            if (femaleVoice) {{
+                                msg.voice = femaleVoice;
+                            }} else {{
+                                msg.pitch = 1.4;
+                            }}
+                            
+                            msg.rate = 1.0;
+                            synth.speak(msg);
+                        </script>
+                    """, height=0)
+            
+            with col_v2:
+                if st.button("⏹️ Stop Audio", use_container_width=True, key="stop_crm"):
+                    components.html("""
+                        <script>
+                            window.parent.speechSynthesis.cancel();
+                        </script>
+                    """, height=0)
             
             # AI Co-Pilot
             st.markdown("### 🤖 AI CO-PILOT")
