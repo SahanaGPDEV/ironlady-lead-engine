@@ -428,11 +428,27 @@ if not filtered_df.empty:
                 goal_text = f"User goal from {lead['Name']}: {lead['Goal']}".replace('"', "'")
                 components.html(f"""
                     <script>
-                        window.parent.speechSynthesis.cancel();
+                        var synth = window.parent.speechSynthesis;
+                        synth.cancel();
                         var msg = new SpeechSynthesisUtterance("{goal_text}");
-                        msg.pitch = 0.9;
+                        
+                        var voices = synth.getVoices();
+                        var femaleVoice = voices.find(v => 
+                            v.name.includes('Female') || 
+                            v.name.includes('woman') || 
+                            v.name.includes('Zira') || 
+                            v.name.includes('Google UK English Female') ||
+                            v.name.includes('Samantha')
+                        );
+                        
+                        if (femaleVoice) {{
+                            msg.voice = femaleVoice;
+                        }} else {{
+                            msg.pitch = 1.3;
+                        }}
+                        
                         msg.rate = 1.0;
-                        window.parent.speechSynthesis.speak(msg);
+                        synth.speak(msg);
                     </script>
                 """, height=0)
             

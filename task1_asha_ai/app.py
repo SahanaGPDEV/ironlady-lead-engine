@@ -528,11 +528,29 @@ elif st.session_state.stage == 1:
         
         components.html(f"""
             <script>
-                window.parent.speechSynthesis.cancel();
+                var synth = window.parent.speechSynthesis;
+                synth.cancel();
+                
                 var msg = new SpeechSynthesisUtterance("{short_text}");
-                msg.pitch = 1.1;
-                msg.rate = 0.9;
-                window.parent.speechSynthesis.speak(msg);
+                
+                // Try to find a female voice
+                var voices = synth.getVoices();
+                var femaleVoice = voices.find(v => 
+                    v.name.includes('Female') || 
+                    v.name.includes('woman') || 
+                    v.name.includes('Zira') || 
+                    v.name.includes('Google UK English Female') ||
+                    v.name.includes('Samantha')
+                );
+                
+                if (femaleVoice) {{
+                    msg.voice = femaleVoice;
+                }} else {{
+                    msg.pitch = 1.3; // Increased pitch as fallback
+                }}
+                
+                msg.rate = 1.0;
+                synth.speak(msg);
             </script>
         """, height=0)
     
