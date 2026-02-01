@@ -423,6 +423,18 @@ if not filtered_df.empty:
             </div>
             """, unsafe_allow_html=True)
             
+            # Voice Feature for CRM
+            if st.button("🎙️ Hear User Goal", use_container_width=True):
+                goal_text = f"User goal from {lead['Name']}: {lead['Goal']}".replace('"', "'")
+                st.markdown(f"""
+                    <script>
+                        var msg = new SpeechSynthesisUtterance("{goal_text}");
+                        msg.pitch = 0.9;
+                        msg.rate = 1.0;
+                        window.speechSynthesis.speak(msg);
+                    </script>
+                """, unsafe_allow_html=True)
+            
             # AI Co-Pilot
             st.markdown("### 🤖 AI CO-PILOT")
             st.markdown("*Generate personalized follow-up messages in seconds*")

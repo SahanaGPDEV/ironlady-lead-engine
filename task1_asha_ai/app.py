@@ -6,9 +6,10 @@ import time
 
 from datetime import datetime
 import config
-from utils import get_whatsapp_link, generate_share_text, calculate_match_score
-from dotenv import load_dotenv
 import csv
+from dotenv import load_dotenv
+from streamlit_mic_recorder import mic_recorder
+from utils import get_whatsapp_link, generate_share_text, calculate_match_score, transcribe_audio
 
 
 # Load environment variables - try both parent and current directory
@@ -364,8 +365,27 @@ if st.session_state.stage == 0:
                                  ["Low Confidence", "Stagnant Career", "Return to Work", "Public Speaking", 
                                   "Work-Life Balance", "Leadership Skills"])
         goal = st.text_area("🎯 Your 6-Month Goal", 
+                           value=st.session_state.get('voice_goal', ""),
                            placeholder="I want to become a confident team leader and get promoted to senior management...", 
                            height=100)
+        
+        # Voice Input for Goal
+        st.markdown("🎤 **Speak your goal instead?**")
+        audio = mic_recorder(
+            start_prompt="Click to Start Recording",
+            stop_prompt="Click to Stop",
+            key='recorder',
+            use_container_width=True
+        )
+        
+        if audio:
+            with st.spinner("🧠 Asha is listening and transcribing..."):
+                transcription = transcribe_audio(audio['bytes'], os.getenv("GROQ_API_KEY"))
+                if transcription and "Error" not in transcription:
+                    st.session_state.voice_goal = transcription
+                    st.rerun()
+                elif transcription:
+                    st.error(transcription)
 
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -496,6 +516,25 @@ elif st.session_state.stage == 1:
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.markdown(f"## 🎉 {st.session_state.user_data['name']}'s Personalized Leadership Roadmap")
     st.markdown(st.session_state.ai_response)
+    
+    # Text-to-Voice (Output)
+    st.divider()
+    st.markdown("### 🔊 Listen to Asha")
+    if st.button("🎙️ Play Audio Roadmap", use_container_width=True):
+        # We use Javascript SpeechSynthesis for zero-latency, zero-cost voice
+        clean_text = st.session_state.ai_response.replace('\n', ' ').replace('"', "'").replace('*', '')
+        # Limit text length to avoid browser issues
+        short_text = clean_text[:800] + "..." if len(clean_text) > 800 else clean_text
+        
+        st.markdown(f"""
+            <script>
+                var msg = new SpeechSynthesisUtterance("{short_text}");
+                msg.pitch = 1.1;
+                msg.rate = 0.9;
+                window.speechSynthesis.speak(msg);
+            </script>
+        """, unsafe_allow_html=True)
+    
     st.markdown('</div>', unsafe_allow_html=True)
 
     # Match Score & Quick Stats

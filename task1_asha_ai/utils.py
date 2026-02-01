@@ -14,6 +14,26 @@ def generate_share_text(user_name, match_score):
     text = f"I just discovered my personalized leadership path with Iron Lady's AI Navigator! 🎯 Got a {match_score}% match score. Ready to transform my career! 💪 #IronLady #WomenInLeadership #CareerGrowth"
     return text
 
+def transcribe_audio(audio_bytes, api_key):
+    """Transcribe audio bytes using Groq Whisper-large-v3"""
+    from groq import Groq
+    import io
+    
+    try:
+        client = Groq(api_key=api_key)
+        # Convert bytes to a file-like object with a name (required by Groq)
+        audio_file = io.BytesIO(audio_bytes)
+        audio_file.name = "recording.wav"
+        
+        transcription = client.audio.transcriptions.create(
+            file=audio_file,
+            model="whisper-large-v3",
+            response_format="text"
+        )
+        return transcription
+    except Exception as e:
+        return f"Error transcribing: {str(e)}"
+
 def calculate_match_score(ai_response):
     """Extract match score from AI response or calculate default"""
     # Try to find percentage in response

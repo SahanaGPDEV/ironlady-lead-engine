@@ -31,9 +31,10 @@ graph TD
 
 **Key Features**:
 - 🤖 **Empathetic AI Persona**: Simulates warm mentoring vs. high-urgency sales.
-- 🧪 **A/B Testing Engine**: Randomly assigns users to "Mentor" or "Sales" tracks; performance is tracked in the CRM via the `Version` tag.
+- 🎤 **Voice-to-Text Input**: Users can speak their goals using **Groq Whisper-large-v3**, making the app accessible and futuristic.
+- 🔊 **Voice Roadmap Playback**: AI responses can be read aloud using browser speech synthesis.
+- 🧪 **A/B Testing Engine**: Randomly assigns users to "Mentor" or "Sales" tracks.
 - 🌍 **Multi-Language Support**: English, Hindi, Telugu, and Tamil.
-- 💾 **Instant Lead Capture**: Zero-latency data persistence to the bridge.
 
 ---
 
@@ -43,9 +44,9 @@ graph TD
 
 **Key Features**:
 - 📈 **Conversion Analytics**: Automated tracking of conversion rates by A/B version.
+- 🔊 **Voice Goal Review**: Sales team can listen to lead goals for a more emotional context during follow-up.
 - 🛡️ **Internal Security**: Sidebar authentication required for data access (Password: `ironlady2025`).
-- 🤖 **AI Co-Pilot**: One-click personalized WhatsApp message generation based on lead's specific goals.
-- ✏️ **Full CRM Pipeline**: Complete CRUD (Create, Read, Update, Delete) capability.
+- 🤖 **AI Co-Pilot**: One-click personalized WhatsApp message generation.
 
 ---
 
