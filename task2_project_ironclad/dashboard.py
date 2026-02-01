@@ -6,6 +6,7 @@ from groq import Groq
 from dotenv import load_dotenv
 import plotly.express as px
 import plotly.graph_objects as go
+import streamlit.components.v1 as components
 
 # Load environment variables
 load_dotenv()
@@ -423,17 +424,17 @@ if not filtered_df.empty:
             </div>
             """, unsafe_allow_html=True)
             
-            # Voice Feature for CRM
             if st.button("🎙️ Hear User Goal", use_container_width=True):
                 goal_text = f"User goal from {lead['Name']}: {lead['Goal']}".replace('"', "'")
-                st.markdown(f"""
+                components.html(f"""
                     <script>
+                        window.parent.speechSynthesis.cancel();
                         var msg = new SpeechSynthesisUtterance("{goal_text}");
                         msg.pitch = 0.9;
                         msg.rate = 1.0;
-                        window.speechSynthesis.speak(msg);
+                        window.parent.speechSynthesis.speak(msg);
                     </script>
-                """, unsafe_allow_html=True)
+                """, height=0)
             
             # AI Co-Pilot
             st.markdown("### 🤖 AI CO-PILOT")

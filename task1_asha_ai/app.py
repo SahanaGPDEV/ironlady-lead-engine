@@ -10,6 +10,7 @@ import csv
 from dotenv import load_dotenv
 from streamlit_mic_recorder import mic_recorder
 from utils import get_whatsapp_link, generate_share_text, calculate_match_score, transcribe_audio
+import streamlit.components.v1 as components
 
 
 # Load environment variables - try both parent and current directory
@@ -522,19 +523,18 @@ elif st.session_state.stage == 1:
     st.divider()
     st.markdown("### 🔊 Listen to Asha")
     if st.button("🎙️ Play Audio Roadmap", use_container_width=True):
-        # We use Javascript SpeechSynthesis for zero-latency, zero-cost voice
         clean_text = st.session_state.ai_response.replace('\n', ' ').replace('"', "'").replace('*', '')
-        # Limit text length to avoid browser issues
-        short_text = clean_text[:800] + "..." if len(clean_text) > 800 else clean_text
+        short_text = clean_text[:800]
         
-        st.markdown(f"""
+        components.html(f"""
             <script>
+                window.parent.speechSynthesis.cancel();
                 var msg = new SpeechSynthesisUtterance("{short_text}");
                 msg.pitch = 1.1;
                 msg.rate = 0.9;
-                window.speechSynthesis.speak(msg);
+                window.parent.speechSynthesis.speak(msg);
             </script>
-        """, unsafe_allow_html=True)
+        """, height=0)
     
     st.markdown('</div>', unsafe_allow_html=True)
 
