@@ -73,8 +73,8 @@ graph TD
 ---
 
 ## 🎥 Demo Videos
-- **Task 1 (Asha AI)**: [Upload your demo video here]
-- **Task 2 (Project Ironclad)**: [Upload your demo video here]
+- **Task 1 (Asha AI)**: [Watch Demo](https://youtu.be/y2LOamsELIA)
+- **Task 2 (Project Ironclad)**: [Watch Demo](https://youtu.be/lzcnfFfx-JE)
 
 ---
 

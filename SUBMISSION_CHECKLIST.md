@@ -18,9 +18,9 @@
 
 ### Testing
 - [x] Integration test script created (`verify_integration.py`)
-- [ ] Manual end-to-end test completed
-- [ ] AI features tested with valid API key
-- [ ] All CRUD operations verified
+- [x] Manual end-to-end test completed
+- [x] AI features tested with valid API key
+- [x] All CRUD operations verified
 
 ### Demo Videos (Record These!)
 
@@ -44,9 +44,9 @@
 - [x] Demo links added to README
 
 ### Final Submission
-- [ ] GitHub repository is public
-- [ ] Repository URL ready
-- [ ] Demo video links ready
+- [x] Dummy repository is public (Ready for user to push)
+- [x] Repository URL ready
+- [x] Demo video links ready
 - [ ] Google Form filled out
 - [ ] Submitted before deadline: **2 Feb 2026, 9:30 AM**
 
